@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --secondary: rgb(255, 155, 0);
+    --secondary-blur: rgb(255, 155, 0, .8);
+    --secondary-light: rgb(255, 205, 0);
+    --yellow-op: rgb(255, 255, 0, .3);
+    --action: rgb(255, 0, 40);
+    --main: rgb(175, 65, 110);
+    --important-font: rgb(255, 205, 0);
+    --blue-green: rgb(0, 205, 120);
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+
+    overflow: hidden;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: black;
+}
+
+main{
+    height: 100%;
+    width: 100%;
+}
+
+.interface {
+    width: 3rem;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-image: radial-gradient(circle at 0 0, var(--secondary-light), var(--secondary));
+    box-shadow: 0 0 .25rem 0 rgb(0, 0, 0, .6);
+}
+
+.action-container {
+    height: 100%;
+    width: 100%;
+    padding: .5rem 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    user-select: none;
+}
+
+.action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-area {
+    padding: 5rem 5rem 5rem 3rem;
+    margin-left: 3rem;
+    height: 100%;
+
+    overflow-y: auto;
+
+    background-image: url('/assets/background/background.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.gallery-meta {
+    display: grid;
+    grid-template-columns: 80% 10%;
+    grid-template-rows: 15% 10% 70%;
+    gap: .2rem;
+    padding: 1rem;
+    height: max-content;
+    width: 100%;
+
+    font-size: 1rem;
+    font-weight: normal;
+    font-family: 'Nunito', sans-serif;
+    color: white;
+
+    background-color: var(--main);
+    border-radius: 1rem;
+}
+
+.gallery-title {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+}
+
+.gallery-meta h2,
+.gallery-meta p {
+    margin: 0;
+}
+
+.gallery-icon {
+    grid-row: 1 / 3;
+    grid-column: 2 / 3;
+}
+
+.gallery-desc {
+    grid-row: 3 / 4;
+    grid-column: 1 / 3;
+    padding: .5rem 0;
+
+    font-size: .8rem;
+}
+
+.gallery-date {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+
+    font-size: .6rem;
+    font-weight: 300;
+}
+
+.gallery-content{
+    padding: 1.5rem;
+}
+
+/* ui */
+
+.ui-element {
+    font-family: 'Nunito', sans-serif;
+}
+
+button {
+    all: unset;
+}
+
+.interface-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: transparent;
+    color: var(--action);
+    padding: 1rem;
+
+    height: 1rem;
+    width: 1rem;
+
+    cursor: pointer;
+    transition: background-color .2s ease-in-out;
+}
+
+.interface-btn:hover {
+    background-color: var(--yellow-op);
+}
+
+.interface-btn p {
+    font-size: .6rem;
+    font-weight: 300;
+}
+
+.btn-with-ttp .tooltip-content {
+    color: white;
+    font-weight: 800;
+
+    position: absolute;
+    display: none;
+    margin-left: 6.5rem;
+    padding: .2rem .4rem;
+
+    border-radius: 1rem;
+    box-shadow: 0 0 .25rem 0 rgb(0, 0, 0, .6);
+
+    opacity: 0;
+    background-color: var(--action);
+
+    transition: opacity .2s ease-in-out;
+}
+
+.btn-with-ttp:hover .tooltip-content {
+    display: block;
+
+    opacity: 1;
+
+    animation: blur-out .5s ease-in-out forwards;
+}
+
+@keyframes blur-out {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
