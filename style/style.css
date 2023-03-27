@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 :root {
-    --secondary: rgb(255, 155, 0);
-    --secondary-blur: rgb(255, 155, 0, .8);
-    --secondary-light: rgb(255, 205, 0);
+    --orange-blur: rgb(255, 155, 0, .8);
     --yellow-op: rgb(255, 255, 0, .3);
-    --action: rgb(255, 0, 40);
-    --main: rgb(175, 65, 110);
+    --bg-op: rgb(255, 255, 255, .2);
+    /* --action: rgb(255, 185, 80); */
+    --action: rgb(50, 165, 95);
+    --action-hover: rgb(35, 145, 80);
+    --action-bg: rgb(10, 140, 60);
+    --main: rgb(175, 65, 65);
+    --main-second: rgb(80, 0, 0);
     --important-font: rgb(255, 205, 0);
     --blue-green: rgb(0, 205, 120);
 }
@@ -19,14 +22,18 @@ body {
     width: 100%;
 
     overflow: hidden;
-
+    
     font-family: 'Roboto', sans-serif;
     font-size: 1.5rem;
     font-weight: normal;
     color: black;
 }
 
-main{
+*::selection {
+    background-color: rgb(0, 0, 0, .5);
+}
+
+main {
     height: 100%;
     width: 100%;
 }
@@ -38,7 +45,7 @@ main{
     top: 0;
     left: 0;
 
-    background-image: radial-gradient(circle at 0 0, var(--secondary-light), var(--secondary));
+    background-image: radial-gradient(circle at 50% 0, var(--main), var(--main-second));
     box-shadow: 0 0 .25rem 0 rgb(0, 0, 0, .6);
 }
 
@@ -66,8 +73,6 @@ main{
     margin-left: 3rem;
     height: 100%;
 
-    overflow-y: auto;
-
     background-image: url('/assets/background/background.svg');
     background-repeat: no-repeat;
     background-position: center;
@@ -88,6 +93,7 @@ main{
     font-family: 'Nunito', sans-serif;
     color: white;
 
+    box-shadow: 0 0 .25rem 0 rgb(0, 0, 0, .6);
     background-color: var(--main);
     border-radius: 1rem;
 }
@@ -123,8 +129,10 @@ main{
     font-weight: 300;
 }
 
-.gallery-content{
+.gallery-content {
     padding: 1.5rem;
+    position: relative;
+    overflow-y: auto;
 }
 
 /* ui */
@@ -151,11 +159,13 @@ button {
     width: 1rem;
 
     cursor: pointer;
-    transition: background-color .2s ease-in-out;
+    transition: color .2s ease-in-out;
 }
 
-.interface-btn:hover {
-    background-color: var(--yellow-op);
+.interface-btn:hover,
+.interface-btn:active,
+.interface-btn:focus {
+    color: var(--action-hover);
 }
 
 .interface-btn p {
@@ -169,14 +179,14 @@ button {
 
     position: absolute;
     display: none;
-    margin-left: 6.5rem;
+    margin-left: 230%;
     padding: .2rem .4rem;
 
     border-radius: 1rem;
     box-shadow: 0 0 .25rem 0 rgb(0, 0, 0, .6);
 
     opacity: 0;
-    background-color: var(--action);
+    background-color: var(--action-hover);
 
     transition: opacity .2s ease-in-out;
 }
@@ -199,4 +209,40 @@ button {
         display: block;
         opacity: 1;
     }
+}
+
+.collection-interface {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 0 0 .5rem;
+    column-gap: 2rem;
+}
+
+.collection-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin: .8rem 0;
+    padding: .5rem;
+    height: 2rem;
+    width: 2rem;
+
+    border-radius: 5rem;
+
+    background-color: var(--action);
+    box-shadow: 0 0 .25rem 0 rgb(0, 0, 0, .6);
+
+    color: white;
+    font-size: 1.8rem;
+
+    cursor: pointer;
+    transition: background-color .2s ease-in-out;
+}
+
+.collection-btn:hover {
+    background-color: var(--action-hover);
 }
