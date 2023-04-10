@@ -146,7 +146,6 @@ class MENU {
             const saveBtn = document.getElementById(`${ui.finishBtn}-${this.menuUUID}`);
             const dialog = document.getElementById(this.menuUUID);
 
-            const elementType = finalStr;
             let elementName;
 
             const inputField = document.getElementById(`name-${this.menuUUID}`);
@@ -163,31 +162,39 @@ class MENU {
                 else {
                     elementName = nameInput.trim();
 
-                    switch (finalStr) {
-                        case 'Collection':
-                            await build.newCollection(
-                                {
-                                    type: elementType,
-                                    name: elementName
-                                }
-                            ).catch((err) => {
-                                throw new Error(err);
-                            });
-                            break;
-                        case 'Album':
-                            await build.newAlbum(
-                                {
-                                    type: elementType,
-                                    name: elementName
-                                }
-                            ).catch((err) => {
-                                throw new Error(err);
-                            });
-                            break;
+                    const rawInput = {
+                        uuid: this.menuUUID,
+                        metadata: {
+                            name: elementName,
+                            editTimestamp: Date.now(),
+                            description: 'Description',
+                            icon: 'https://images.pexels.com/photos/157520/pexels-photo-157520.jpeg?auto=compress&cs=tinysrgb&w=1600'
+                        }
                     }
 
-                    dialog.close();
-                    this.menuContainer.classList.remove('menu-open');
+                    switch (finalStr) {
+                        case 'Collection':
+                            await build.newCollection(rawInput, 'set')
+                                .then(() => {
+                                    dialog.close();
+                                    this.menuContainer.classList.remove('menu-open');
+                                    // location.reload();
+                                }).catch((err) => {
+                                    throw new Error(err);
+                                });
+                        break;
+
+                        case 'Album':
+                            await build.newAlbum(rawInput ,'set')
+                            .then(() => {
+                                dialog.close();
+                                this.menuContainer.classList.remove('menu-open');
+                                // location.reload();
+                            }).catch((err) => {
+                                throw new Error(err);
+                            });
+                        break;
+                    }
                 }
             })
         }
